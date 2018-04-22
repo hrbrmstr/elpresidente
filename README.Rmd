@@ -1,0 +1,55 @@
+---
+output: rmarkdown::github_document
+---
+
+# elpresidente
+
+## Description
+
+Methods are provided that let you search and extract corpus elements 
+from 'The American Presidency Project' <http://www.presidency.ucsb.edu>.
+    
+## What's Inside The Tin
+
+The following functions are implemented:
+
+- `app_eo_list`:	Retieve a data frame of metadata about Executive Orders issues in a given year
+- `app_get_eo`:	Retrieve metadata and full text of an executive order by APP id
+
+## Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/elpresidente")
+```
+
+```{r message=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+options(width=120)
+```
+
+## Usage
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+library(elpresidente)
+
+# current verison
+packageVersion("elpresidente")
+
+```
+
+## Example
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+library(purrr)
+library(tidyr)
+library(dplyr)
+
+app_eo_list(1826) %>%
+  mutate(eo_info = map(eo_id, app_get_eo)) %>%
+  unnest() %>%
+  glimpse()
+
+app_eo_list(2014) %>%
+  mutate(eo_info = map(eo_id, app_get_eo)) %>%
+  unnest() %>%
+  glimpse()
+```
