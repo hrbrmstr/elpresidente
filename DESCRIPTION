@@ -27,4 +27,4 @@ Imports:
     tidyr,
     xml2,
     purrr
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000

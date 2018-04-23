@@ -15,6 +15,7 @@ The following functions are implemented:
 
 - `app_eo_list`:	Retieve a data frame of metadata about Executive Orders issues in a given year
 - `app_get_eo`:	Retrieve metadata and full text of an executive order by APP id
+- `app_get_inaugurals`:	Retrieve metadata and full text for Presidential Inaugural Addresses
 
 ## Installation
 
@@ -42,7 +43,9 @@ packageVersion("elpresidente")
 library(purrr)
 library(tidyr)
 library(dplyr)
+```
 
+```{r cache=TRUE}
 app_eo_list(1826) %>%
   mutate(eo_info = map(eo_id, app_get_eo)) %>%
   unnest() %>%
@@ -52,4 +55,8 @@ app_eo_list(2014) %>%
   mutate(eo_info = map(eo_id, app_get_eo)) %>%
   unnest() %>%
   glimpse()
+```
+
+```{r cache=TRUE}
+app_get_inaugurals()
 ```

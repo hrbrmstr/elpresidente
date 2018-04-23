@@ -30,12 +30,12 @@ app_get_eo <- function(eo_id) {
 
   # get the text of the span itself since it's super bad HTML
   rvest::html_nodes(pg, xpath="//span[@class = 'displaytext']/text()") %>%
-    html_text -> span_txt
+    rvest::html_text() -> span_txt
 
   # get the rest of the span (ugh)
   rvest::html_nodes(pg, xpath="//span[@class = 'displaytext']") %>%
     rvest::html_children() %>%
-    purrr::map_chr(html_text) -> eo_text
+    purrr::map_chr(rvest::html_text) -> eo_text
 
   # smush them together
   paste0(c(span_txt, eo_text), collapse="\n") %>%

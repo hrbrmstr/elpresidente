@@ -2,8 +2,10 @@
 
 export(app_eo_list)
 export(app_get_eo)
+export(app_get_inaugurals)
 import(stringi)
 importFrom(dplyr,mutate)
+importFrom(dplyr,progress_estimated)
 importFrom(dplyr,select)
 importFrom(lubridate,mdy)
 importFrom(purrr,"%>%")
